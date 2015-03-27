@@ -40,7 +40,7 @@ totem {
         # Limit generated nodeids to 31-bits (positive signed integers)
         clear_node_high_bit: new
 
-        secauth: on
+        secauth: <%= @secauth  %>
 
         # This specifies the mode of redundant ring, which may be none, active, or passive.
         rrp_mode: none

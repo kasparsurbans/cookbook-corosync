@@ -20,6 +20,7 @@ default[:corosync][:mcast_addr]   = "239.1.2.3"
 default[:corosync][:mcast_port]   = 5405
 default[:corosync][:members]      = []
 default[:corosync][:transport]    = "udp"
+default[:corosync][:secauth]    = "on"
 
 case node.platform
 when 'suse'
