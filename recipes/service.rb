@@ -32,7 +32,7 @@ when %w(debian ubuntu)
   end
 end
 
-unless node.platform == 'suse' && node.platform == 'rhel'
+unless node.platform == 'suse' || node.platform == 'centos'
   # This block is not really necessary because chef would automatically backup the file.
   # However, it's good to have the backup file in the same directory. (Easier to find later.)
   ruby_block "backup corosync init script" do
