@@ -50,6 +50,7 @@ template "/etc/corosync/corosync.conf" do
     :mcast_port   => node[:corosync][:mcast_port],
     :members      => node[:corosync][:members],
     :transport    => node[:corosync][:transport]
+    :secauth      => node[:corosync][:secauth]
   )
 
   service_name = node[:pacemaker][:platform][:service_name] rescue nil
