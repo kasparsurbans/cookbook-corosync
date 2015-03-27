@@ -56,27 +56,29 @@ unless node.platform == 'suse' || node.platform == 'centos'
   end
 end
 
-# This package is needed so Chef can set the user password, but
-# chef-client can only use it immediately if we install it at
-# recipe compile-time, not run-time:
-# from the next run onwards:
-pkg = package "rubygem-ruby-shadow" do
-  action :nothing
-end
-pkg.run_action(:install) if node.platform == 'suse'
+unless node.platform == 'centos'
+  # This package is needed so Chef can set the user password, but
+  # chef-client can only use it immediately if we install it at
+  # recipe compile-time, not run-time:
+  # from the next run onwards:
+  pkg = package "rubygem-ruby-shadow" do
+    action :nothing
+  end
+  pkg.run_action(:install) if node.platform == 'suse'
 
-user node[:corosync][:user] do
-  action :modify
-  # requires ruby-shadow gem
-  password node[:corosync][:password]
-end
+  user node[:corosync][:user] do
+    action :modify
+    # requires ruby-shadow gem
+    password node[:corosync][:password]
+  end
 
-# After installation of ruby-shadow, we have a new path for the new gem, so we
-# need to reset the paths if we can't load ruby-shadow
-begin
-  require 'shadow'
-rescue LoadError
-  Gem.clear_paths
+  # After installation of ruby-shadow, we have a new path for the new gem, so we
+  # need to reset the paths if we can't load ruby-shadow
+  begin
+    require 'shadow'
+  rescue LoadError
+    Gem.clear_paths
+  end
 end
 
 # If this file exists, then we will require that corosync is either manually
