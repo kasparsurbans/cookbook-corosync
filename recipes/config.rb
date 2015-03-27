@@ -49,7 +49,7 @@ template "/etc/corosync/corosync.conf" do
     :mcast_addr   => node[:corosync][:mcast_addr],
     :mcast_port   => node[:corosync][:mcast_port],
     :members      => node[:corosync][:members],
-    :transport    => node[:corosync][:transport]
+    :transport    => node[:corosync][:transport],
     :secauth      => node[:corosync][:secauth]
   )
 
