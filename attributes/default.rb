@@ -30,6 +30,9 @@ when 'suse'
   default[:corosync][:platform][:packages].push "cluster-glue"
 
   default[:corosync][:platform][:service_name] = "openais"
+when 'rhel'
+  default[:corosync][:platform][:packages] = %w(corosync)
+  default[:corosync][:platform][:service_name] = "corosync"
 else
   # FIXME: untested, probably wrong
   default[:corosync][:platform][:packages] = %w(corosync)

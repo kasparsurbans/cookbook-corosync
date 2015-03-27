@@ -24,11 +24,11 @@ if platform_family? "suse"
   end
 end
 
-if platform_family? "rhel"
-  # http://clusterlabs.org/quickstart.html
-  Chef::Application.fatal! "FIXME: RedHat-based platforms configure corosync via cluster.conf"
-  return
-end
+#if platform_family? "rhel"
+# http://clusterlabs.org/quickstart.html
+#  Chef::Application.fatal! "FIXME: RedHat-based platforms configure corosync via cluster.conf"
+#  return
+#end
 
 unless %(udp udpu).include?(node[:corosync][:transport])
   raise "Invalid transport #{node[:corosync][:transport]}!"
