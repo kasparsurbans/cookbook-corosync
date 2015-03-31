@@ -21,6 +21,8 @@ default[:corosync][:mcast_port]   = 5405
 default[:corosync][:members]      = []
 default[:corosync][:transport]    = "udp"
 default[:corosync][:secauth]      = "on"
+default[:corosync][:quorum]       = "no"
+default[:corosync][:quorum_expected_votes] = "2"
 
 case node.platform
 when 'suse'
